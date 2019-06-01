@@ -15,6 +15,6 @@ mongoose.connect(process.env.URLDB, (err) => {
     if (err) throw error;
 
     migrationUser();
-    migrationCategory();
+    //migrationCategory();
 });
 

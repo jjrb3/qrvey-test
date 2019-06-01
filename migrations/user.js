@@ -26,9 +26,9 @@ let migrationUser = () => {
 let transactions = () => {
     return [
         {
-            name: 'Test Condors Labs',
-            email: 'test@condors.co',
-            password: bcrypt.hashSync('C0nd0rs', 10)
+            name: 'Test Qrvey',
+            email: 'test@qrvey.com',
+            password: bcrypt.hashSync('Qrv3y.', 10)
         },
         {
             name: 'Jeremy Reyes B.',
