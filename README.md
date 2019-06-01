@@ -12,8 +12,8 @@ Project execution:
 # Access credentials:
 
 ```
-User: test@condors.co
-Pass: C0nd0rs
+User: test@qrvey.com
+Pass: Qrv3y.
 
 ```
 
@@ -25,17 +25,10 @@ npm: 6.7.0
 bcrypt: ^3.0.5,
 body-parser: ^1.18.3,
 express: ^4.16.4,
-hbs: ^4.0.1,
 jsonwebtoken: ^8.5.1,
 mongoose: ^5.4.19,
 mongooseunique-validator": ^2.0.2
 ```
-
-# Theme
-
-Ample Admin is a clean, simple and minimal free HTML5 admin dashboard template. It has an attractive and fresh design with full responsiveness based on Bootstrap framework. Intuitive codes with LESS based CSS inside. Top navigation bar with search box also included with it.
-
-https://themewagon.com/themes/free-html5-admin-dashboard-template-ample-admin/
 
 # Database
 
