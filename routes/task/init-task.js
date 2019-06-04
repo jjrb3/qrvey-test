@@ -40,14 +40,14 @@ app.post('/api/init-task', verifyToken, (req, res) => {
         }
 
 
-        if (taskDB.status === 'Init') {
+        if (taskDB.status === 'Init' || taskDB.status === 'Continuing') {
             return res.status(400).json({
                 success: false,
                 message: 'The task is already started'
             });
         }
 
-        taskDB.status = 'Init';
+        taskDB.status = taskDB.status === 'Pause' ? 'Continuing' : 'Init';
         taskDB.updated_at = Date.now();
 
 
