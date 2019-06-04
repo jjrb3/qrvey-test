@@ -53,7 +53,7 @@ app.post('/api/create-project/', verifyToken, (req, res) => {
                 });
             }
 
-            taskDB.project = infoDataDB._id
+            taskDB.project = infoDataDB._id;
 
             res.status(201).json({
                 success: true,

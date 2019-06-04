@@ -10,8 +10,4 @@ app.use(require('./task/'));
 app.use(require('./project/'));
 
 
-/*
-app.use(require('./category'));
-app.use(require('./product'));
-*/
 module.exports = app;
