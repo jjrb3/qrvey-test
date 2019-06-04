@@ -26,8 +26,7 @@ app.set('view engine','hbs');
 
 
 // Routes
-app.use(require('./routes/api'));
-app.use(require('./routes/web'));
+app.use(require('./routes'));
 
 
 

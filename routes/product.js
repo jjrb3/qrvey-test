@@ -2,9 +2,9 @@
 const express = require('express');
 
 // Models
-const Product = require('../../models/product');
+const Product = require('../models/product');
 
-const { verifyToken } = require('../../middlewares/authentication');
+const { verifyToken } = require('../middlewares/authentication');
 
 const app = express();
 

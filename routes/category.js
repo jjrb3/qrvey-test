@@ -1,9 +1,9 @@
 
 const express = require('express');
 
-const Category = require('../../models/category');
+const Category = require('../models/category');
 
-const { verifyToken } = require('../../middlewares/authentication');
+const { verifyToken } = require('../middlewares/authentication');
 
 const app = express();
 

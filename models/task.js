@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 /**
  * Config schema tasks
  */
-let collectionSchema = new Schema({
+let taskSchema = new Schema({
     name: {
         type: String,
         required: false
@@ -38,4 +38,4 @@ let collectionSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('tasks', collectionSchema);
+module.exports = mongoose.model('tasks', taskSchema);

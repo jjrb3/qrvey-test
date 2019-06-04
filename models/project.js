@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 /**
  * Config schema project
  */
-let collectionSchema = new Schema({
+let projectSchema = new Schema({
     name: {
         type: String,
         required: [true, 'The provider is necessary']
@@ -13,4 +13,4 @@ let collectionSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('project', collectionSchema);
+module.exports = mongoose.model('project', projectSchema);
