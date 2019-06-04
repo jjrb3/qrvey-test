@@ -5,10 +5,11 @@ const app = express();
 
 
 // Task routes
-app.use(require('./create-task'));
+app.use(require('./create'));
 app.use(require('./get-task-by-user'));
-app.use(require('./init-task'));
-app.use(require('./pause-task'));
+app.use(require('./init'));
+app.use(require('./pause'));
+app.use(require('./restart'));
 
 
 module.exports = app;
