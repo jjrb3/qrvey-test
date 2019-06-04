@@ -43,7 +43,7 @@ app.post('/api/create-task/', verifyToken, (req, res) => {
 
         res.status(201).json({
             success: true,
-            producto: infoDataDB
+            task: infoDataDB
         });
     });
 });
