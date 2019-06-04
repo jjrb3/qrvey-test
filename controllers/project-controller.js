@@ -33,7 +33,7 @@ class ProjectController {
         if (!params.project_id) {
             return {
                 success: false,
-                message: 'Project id is required'
+                message: 'Project ID is required'
             }
         }
 

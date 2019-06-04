@@ -41,7 +41,7 @@ let taskSchema = new Schema({
     },
     project: {
         type: Schema.Types.ObjectId,
-        ref: 'project',
+        ref: 'projects',
         required: false
     }
 });
