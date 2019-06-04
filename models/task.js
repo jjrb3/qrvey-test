@@ -20,11 +20,15 @@ let taskSchema = new Schema({
     },
     duration: {
         type: Number,
-        required: true
+        required: false
     },
     stop: {
         type: Date,
         required: false
+    },
+    create_at: {
+        type: Date,
+        required: true
     },
     user: {
         type: Schema.Types.ObjectId,
