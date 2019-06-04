@@ -8,7 +8,8 @@ let Schema = mongoose.Schema;
 let taskLogSchema = new Schema({
     start: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now()
     },
     pause: {
         type: Date,

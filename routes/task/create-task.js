@@ -37,7 +37,7 @@ app.post('/api/create-task/', verifyToken, (req, res) => {
         if (err) {
             return res.status(500).json({
                 success: false,
-                err
+                messsage: err.message
             });
         }
 
