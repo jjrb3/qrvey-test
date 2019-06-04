@@ -8,6 +8,7 @@ const app = express();
 app.use(require('./create-task'));
 app.use(require('./get-task-by-user'));
 app.use(require('./init-task'));
+app.use(require('./pause-task'));
 
 
 module.exports = app;

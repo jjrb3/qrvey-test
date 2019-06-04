@@ -11,9 +11,9 @@ const app = express();
 
 
 // ============================
-// Init task by id task
+// Pause task by id task
 // ============================
-app.post('/api/init-task', verifyToken, (req, res) => {
+app.post('/api/pause-task', verifyToken, (req, res) => {
 
     if (!req.body.task_id) {
         return res.status(500).json({
@@ -40,15 +40,18 @@ app.post('/api/init-task', verifyToken, (req, res) => {
         }
 
 
-        if (taskDB.status === 'Init') {
+        if (taskDB.status === 'Pause') {
             return res.status(400).json({
                 success: false,
-                message: 'The task is already started'
+                message: 'The task is already paused'
             });
         }
 
-        taskDB.status = 'Init';
-        taskDB.updated_at = Date.now();
+        let pauseTime = Date.now();
+
+        taskDB.status = 'Pause';
+        taskDB.total_time += (pauseTime - new Date(taskDB.updated_at));
+        taskDB.updated_at = pauseTime;
 
 
         // Update information
@@ -61,14 +64,12 @@ app.post('/api/init-task', verifyToken, (req, res) => {
                 });
             }
 
-            let taskLog = new TaskLog({
+            let conditions = {
                 task: req.body.task_id,
                 pause: ''
-            });
+            };
 
-
-            // Create Log
-            taskLog.save((err, infoDataDB) => {
+            TaskLog.findOneAndUpdate(conditions, { pause : pauseTime }, (err, taskLogDB) => {
 
                 if (err) {
                     return res.status(500).json({
@@ -77,10 +78,12 @@ app.post('/api/init-task', verifyToken, (req, res) => {
                     });
                 }
 
+                taskLogDB.pause = pauseTime;
+
                 res.json({
                     success: true,
                     task: taskUpdated,
-                    log: infoDataDB
+                    log: taskLogDB
                 });
             });
         });

@@ -22,13 +22,18 @@ let taskSchema = new Schema({
         type: Number,
         required: false
     },
-    stop: {
+    /*stop: {
         type: Date,
         required: false
-    },
-    create_at: {
+    },*/
+    created_at: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now()
+    },
+    updated_at: {
+        type: Date,
+        required: false
     },
     user: {
         type: Schema.Types.ObjectId,
