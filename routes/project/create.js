@@ -16,9 +16,9 @@ const projectController = new ProjectController();
 const app = express();
 
 
-// ============================
-// Create task
-// ============================
+// ================================
+// Create project and relate task
+// ================================
 app.post('/api/create-project/', verifyToken, (req, res) => {
 
     let verify = projectController.verify(req.body);
