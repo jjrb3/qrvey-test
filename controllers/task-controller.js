@@ -12,7 +12,13 @@ class TaskController {
         this.utils = new UtilsController();
     }
 
-
+    /**
+     * Create a new task
+     *
+     * @param res: Request
+     * @param res: Response
+     * @return {*|Promise<any>|void}
+     */
     create(req, res) {
 
         let verify = this.verify(req.body, req.dataUser._id);
@@ -26,6 +32,12 @@ class TaskController {
     }
 
 
+    /**
+     * Verify parameters from request
+     *
+     * @param res:      Request
+     * @param verify:   Object to verify
+     */
     save(res, verify) {
 
         let task = new Task(verify.data);
@@ -47,7 +59,15 @@ class TaskController {
         });
     }
 
-
+    /**
+     * Verify if the parameters are correct.
+     *
+     * @param params
+     * @param userId
+     * @return {{total, success}|
+     *          {success, message}|
+     *          {data: {name: *, total_time: number, create_at: number, user: *, status: string}, success: boolean}}
+     */
     verify(params, userId) {
 
         var data = {
