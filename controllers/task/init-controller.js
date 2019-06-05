@@ -6,7 +6,13 @@ const TaskLog = require('../../models/task-log');
 
 class InitController {
 
-
+    /**
+     * Initialize task
+     *
+     * @param req: Request
+     * @param res: Response
+     * @return {*|Promise<any>|void}
+     */
     initialize(req, res) {
 
         if (!req.body.task_id) {
@@ -20,6 +26,14 @@ class InitController {
     }
 
 
+    /**
+     * Check if the parameters are correct.
+     * @param err:      Exception
+     * @param taskDB    Query result
+     * @return {{success: boolean, json: {success: boolean, message: string}, status: number}|
+     *          {success: boolean, json: {success: boolean, message: *}, status: number}|
+     *          {success: boolean}}
+     */
     verify(err, taskDB) {
 
         if (err) {
@@ -61,6 +75,12 @@ class InitController {
     }
 
 
+    /**
+     * Search task by id
+     *
+     * @param req: Request
+     * @param res: Response
+     */
     searchTaskById(req, res) {
 
         Task.findById(req.body.task_id, (err, taskDB) => {
@@ -74,6 +94,13 @@ class InitController {
     }
 
 
+    /**
+     * Change status On Hold to Init or Continuing
+     *
+     * @param req:    Request
+     * @param res:    Response
+     * @param taskDB: Query results
+     */
     changeStatus(req, res, taskDB) {
 
         taskDB.status     = taskDB.status === 'Pause' ? 'Continuing' : 'Init';
@@ -95,6 +122,12 @@ class InitController {
     }
 
 
+    /**
+     *
+     * @param req:          Request
+     * @param res:          Response
+     * @param taskUpdated:  Query results
+     */
     initLog(req, res, taskUpdated) {
 
         let taskLog = new TaskLog({
@@ -113,7 +146,7 @@ class InitController {
                 });
             }
 
-            res.json({
+            return res.json({
                 success: true,
                 task: taskUpdated,
                 log: infoDataDB
