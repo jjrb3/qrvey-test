@@ -1,19 +1,19 @@
 
 // Models
 const Project = require('../../models/project');
-const Task    = require('../../models/task');
+const Task = require('../../models/task');
 
 
-class CreateRelateController {
+class RelateController {
 
     /**
-     * Verify the params
+     * Relate project to task
      *
      * @param req: Request
      * @param res: Response
      * @return {*|Promise<any>|void}
      */
-    create(req, res) {
+    relate(req, res) {
 
         let verify = this.verify(req.body);
 
@@ -22,49 +22,23 @@ class CreateRelateController {
             return res.status(500).json(verify);
         }
 
-        return this.save(req, res, verify);
+        return this.update(req, res);
     }
 
 
     /**
-     * Save project
+     * Update relationship
      *
-     * @param req:      Request
-     * @param res:      Response
-     * @param verify:   Parameters
+     * @param req: Request
+     * @param res: Response
      */
-    save(req, res, verify) {
-
-        let project = new Project(verify.data);
-
-        project.save((err, infoDataDB) => {
-
-            if (err) {
-                return res.status(500).json({
-                    success: false,
-                    messsage: err.message
-                });
-            }
-
-            return this.relateTask(req, res, infoDataDB);
-        });
-    }
-
-
-    /**
-     * Relate task to project
-     *
-     * @param req:        Request
-     * @param res:        Response
-     * @param infoDataDB: Query result
-     */
-    relateTask(req, res, infoDataDB) {
+    update(req, res) {
 
         let conditions = {
             _id: req.body.task_id
         };
 
-        Task.findOneAndUpdate(conditions, { project : infoDataDB._id }, (err, taskDB) => {
+        Task.findOneAndUpdate(conditions, { project : req.body.project_id }, (err, taskDB) => {
 
             if (err) {
                 return res.status(500).json({
@@ -73,11 +47,10 @@ class CreateRelateController {
                 });
             }
 
-            taskDB.project = infoDataDB._id;
+            taskDB.project = req.body.project_id;
 
             res.status(201).json({
                 success: true,
-                project: infoDataDB,
                 task: taskDB
             });
         });
@@ -87,15 +60,15 @@ class CreateRelateController {
     /**
      * Check if the parameters are correct.
      *
-     * @param params: Parameters from request
+     * @param params
      * @return {{success: boolean, message: string}|{data: {name: *}, success: boolean}}
      */
     verify(params) {
 
-        if (!params.name) {
+        if (!params.project_id) {
             return {
                 success: false,
-                message: 'Project name is required'
+                message: 'Project ID is required'
             }
         }
 
@@ -117,5 +90,5 @@ class CreateRelateController {
 
 
 module.exports = {
-    CreateRelateController
+    RelateController
 };

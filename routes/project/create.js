@@ -5,7 +5,6 @@ const express = require('express');
 // Controllers
 const { CreateRelateController } = require('../../controllers/project/create-and-relate-controller');
 
-
 const { verifyToken } = require('../../middlewares/authentication');
 
 
