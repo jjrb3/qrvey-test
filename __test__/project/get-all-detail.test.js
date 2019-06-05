@@ -52,7 +52,7 @@ describe('Get all tasks by user', () => {
             .set('Accept', 'application/json')
             .send({
                 type: 'user',
-                id: '5cf2ef47ca47670832d25e3c'
+                id: '5cf2ef47ca47670832d25e3d'
             })
             .expect(200)
             .end((err, res) => {
