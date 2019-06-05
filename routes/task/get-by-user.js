@@ -10,7 +10,7 @@ const app = express();
 
 
 // ============================
-// GET - Get all task by user
+// GET: Get all task by user
 // ============================
 app.get('/api/get-task/:user_id', verifyToken, (req, res) => {
 

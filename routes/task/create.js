@@ -3,19 +3,19 @@ const express = require('express');
 
 
 // Controllers
-const { TaskController } = require('../../controllers/task-controller');
+const { CreateController } = require('../../controllers/task/create-controller');
 
 const { verifyToken } = require('../../middlewares/authentication');
 
 
-const taskController = new TaskController();
+const createController = new CreateController();
 const app = express();
 
 
 // ============================
-// POST - Create task
+// POST: Create task
 // ============================
-app.post('/api/create-task/', verifyToken, (req, res) => taskController.create(req, res));
+app.post('/api/create-task/', verifyToken, (req, res) => createController.create(req, res));
 
 
 

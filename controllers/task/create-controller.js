@@ -1,11 +1,11 @@
 
 // Models
-const Task = require('../models/task');
+const Task = require('../../models/task');
 
-const { UtilsController } = require('./utils-controller');
+const { UtilsController } = require('../utils-controller');
 
 
-class TaskController {
+class CreateController {
 
 
     constructor() {
@@ -96,5 +96,5 @@ class TaskController {
 
 
 module.exports = {
-    TaskController
+    CreateController
 };
