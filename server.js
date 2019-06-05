@@ -33,3 +33,6 @@ mongoose.connect(process.env.URLDB, (err) => {
 app.listen(process.env.PORT, () => {
     console.log('Listen port: ', process.env.PORT);
 });
+
+
+module.exports = app; // For testing

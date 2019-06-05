@@ -30,6 +30,6 @@ process.env.SEED =  process.env.SEED || '&ns39%od0.';
 // ========================
 //  Database
 // ========================
-let urlDB = process.env.NODE_ENV === 'dev' ? 'mongodb://localhost:27017/tasks' : 'mongodb://cafe-user:JJrb333@ds127190.mlab.com:27190/qrvey';
+let urlDB = process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'test' ? 'mongodb://localhost:27017/tasks' : 'mongodb://cafe-user:JJrb333@ds127190.mlab.com:27190/qrvey';
 
 process.env.URLDB = urlDB;
