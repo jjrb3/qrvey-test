@@ -13,7 +13,7 @@ const app = express();
 // ============================
 // POST: Pause task by id task
 // ============================
-app.post('/api/pause-task', verifyToken, (req, res) => pauseController.initialize(req, res));
+app.post('/api/pause-task', verifyToken, (req, res) => pauseController.pause(req, res));
 
 
 module.exports = app;

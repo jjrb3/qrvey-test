@@ -6,10 +6,6 @@ const TaskLog = require('../../models/task-log');
 
 class PauseController {
 
-    constructor() {
-        this.pauseTime = Date.now();
-    }
-
 
     /**
      * Initialize task
@@ -18,7 +14,7 @@ class PauseController {
      * @param res: Response
      * @return {*|Promise<any>|void}
      */
-    initialize(req, res) {
+    pause(req, res) {
 
         if (!req.body.task_id) {
             return res.status(500).json({
@@ -108,9 +104,11 @@ class PauseController {
      */
     changeStatus(req, res, taskDB) {
 
+        let pauseTime = Date.now();
+
         taskDB.status       = 'Pause';
-        taskDB.total_time  += (this.pauseTime - new Date(taskDB.updated_at));
-        taskDB.updated_at   = this.pauseTime;
+        taskDB.total_time  += (pauseTime - new Date(taskDB.updated_at));
+        taskDB.updated_at   = pauseTime;
 
 
         // Update information
@@ -123,7 +121,7 @@ class PauseController {
                 });
             }
 
-            return this.pauseLog(req, res, taskUpdated);
+            return this.pauseLog(req, res, taskUpdated, pauseTime);
         });
     }
 
@@ -135,7 +133,7 @@ class PauseController {
      * @param res:          Response
      * @param taskUpdated:  Query results
      */
-    pauseLog(req, res, taskUpdated) {
+    pauseLog(req, res, taskUpdated, pauseTime) {
 
         let conditions = {
             task: req.body.task_id,
@@ -143,7 +141,7 @@ class PauseController {
         };
 
 
-        TaskLog.findOneAndUpdate(conditions, { pause : this.pauseTime }, (err, taskLogDB) => {
+        TaskLog.findOneAndUpdate(conditions, { pause : pauseTime }, (err, taskLogDB) => {
 
             if (err) {
                 return res.status(500).json({
@@ -152,7 +150,7 @@ class PauseController {
                 });
             }
 
-            taskLogDB.pause = this.pauseTime;
+            taskLogDB.pause = pauseTime;
 
             res.json({
                 success: true,
