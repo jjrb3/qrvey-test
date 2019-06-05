@@ -26,7 +26,7 @@ class UtilsController {
 
         return {
             success: true,
-            total
+            total: parseInt(total)
         }
     }
 }

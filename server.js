@@ -3,8 +3,6 @@ require('./config/config');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const hbs = require('hbs');
-const path = require('path');
 
 const app = express();
 
@@ -17,17 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// Enable public folder
-app.use(express.static(path.resolve(__dirname, '../public')));
-
-// Express HBS engine
-hbs.registerPartials(__dirname + '/../views/partials');
-app.set('view engine','hbs');
-
 
 // Routes
 app.use(require('./routes'));
-
 
 
 // Connect to MongoDB
