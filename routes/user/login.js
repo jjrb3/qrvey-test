@@ -31,7 +31,7 @@ app.post('/api/login', (req, res) => {
         }
 
         // If exists user
-        if (!userDB) {
+        if (!userDB || !body.password) {
             return res.status(400).json({
                 success: false,
                 err: {

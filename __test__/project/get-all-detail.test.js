@@ -45,7 +45,7 @@ describe('Get all tasks by user', () => {
             });
     });
 
-    test('Get all tasks by project', (done) => {
+    test('Get all tasks by user', (done) => {
         request(app)
             .get("/api/get-all-project-detail")
             .set('Authorization', token)
