@@ -32,7 +32,7 @@ mongooseunique-validator": ^2.0.2
 
 # Postmant API
 
-[Qrvey: API - v1.0.0](documenter.getpostman.com/view/1171149/S1TYTb3v).
+[Qrvey: API - v1.0.0](https://documenter.getpostman.com/view/1171149/S1TYTb3v?version=latest).
 
 
 # Database
