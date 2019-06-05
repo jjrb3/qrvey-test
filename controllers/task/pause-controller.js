@@ -4,7 +4,12 @@ const Task    = require('../../models/task');
 const TaskLog = require('../../models/task-log');
 
 
-class InitController {
+class PauseController {
+
+    constructor() {
+        this.pauseTime = Date.now();
+    }
+
 
     /**
      * Initialize task
@@ -60,13 +65,13 @@ class InitController {
         }
 
 
-        if (taskDB.status === 'Init' || taskDB.status === 'Continuing') {
+        if (taskDB.status === 'Pause') {
             return {
                 success: false,
                 status: 400,
                 json: {
                     success: false,
-                    message: 'The task is already started'
+                    message: 'The task is already paused'
                 },
             };
         }
@@ -95,7 +100,7 @@ class InitController {
 
 
     /**
-     * Change status On Hold to Init or Continuing
+     * Change status Init or Continuing to Pause
      *
      * @param req:    Request
      * @param res:    Response
@@ -103,8 +108,9 @@ class InitController {
      */
     changeStatus(req, res, taskDB) {
 
-        taskDB.status     = taskDB.status === 'Pause' ? 'Continuing' : 'Init';
-        taskDB.updated_at = Date.now();
+        taskDB.status       = 'Pause';
+        taskDB.total_time  += (this.pauseTime - new Date(taskDB.updated_at));
+        taskDB.updated_at   = this.pauseTime;
 
 
         // Update information
@@ -117,28 +123,27 @@ class InitController {
                 });
             }
 
-            return this.initLog(req, res, taskUpdated);
+            return this.pauseLog(req, res, taskUpdated);
         });
     }
 
 
     /**
-     * Init task log
+     * Pause task log
      *
      * @param req:          Request
      * @param res:          Response
      * @param taskUpdated:  Query results
      */
-    initLog(req, res, taskUpdated) {
+    pauseLog(req, res, taskUpdated) {
 
-        let taskLog = new TaskLog({
+        let conditions = {
             task: req.body.task_id,
             pause: ''
-        });
+        };
 
 
-        // Create Log
-        taskLog.save((err, infoDataDB) => {
+        TaskLog.findOneAndUpdate(conditions, { pause : this.pauseTime }, (err, taskLogDB) => {
 
             if (err) {
                 return res.status(500).json({
@@ -147,10 +152,12 @@ class InitController {
                 });
             }
 
-            return res.json({
+            taskLogDB.pause = this.pauseTime;
+
+            res.json({
                 success: true,
                 task: taskUpdated,
-                log: infoDataDB
+                log: taskLogDB
             });
         });
     }
@@ -158,5 +165,5 @@ class InitController {
 
 
 module.exports = {
-    InitController
+    PauseController
 };
