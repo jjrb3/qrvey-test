@@ -6,7 +6,13 @@ const Task    = require('../../models/task');
 
 class CreateRelateController {
 
-
+    /**
+     * Verify the params
+     *
+     * @param req: Request
+     * @param res: Response
+     * @return {*|Promise<any>|void}
+     */
     create(req, res) {
 
         let verify = this.verify(req.body);
@@ -20,6 +26,13 @@ class CreateRelateController {
     }
 
 
+    /**
+     * Save project
+     *
+     * @param req:      Request
+     * @param res:      Response
+     * @param verify:   Parameters
+     */
     save(req, res, verify) {
 
         let project = new Project(verify.data);
@@ -37,6 +50,14 @@ class CreateRelateController {
         });
     }
 
+
+    /**
+     * Relate task to project
+     *
+     * @param req:        Request
+     * @param res:        Response
+     * @param infoDataDB: Query result
+     */
     relateTask(req, res, infoDataDB) {
 
         let conditions = {
@@ -63,6 +84,12 @@ class CreateRelateController {
     }
 
 
+    /**
+     * Verify the params
+     *
+     * @param params: Parameters from request
+     * @return {{success: boolean, message: string}|{data: {name: *}, success: boolean}}
+     */
     verify(params) {
 
         if (!params.name) {
