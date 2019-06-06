@@ -19,7 +19,7 @@ class RelateController {
 
 
         if (!verify.success) {
-            return res.status(500).json(verify);
+            return res.status(400).json(verify);
         }
 
         return this.update(req, res);

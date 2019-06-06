@@ -21,7 +21,7 @@ class RestartController {
     restart(req, res) {
 
         if (!req.body.task_id) {
-            return res.status(500).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Task id is required'
             });
