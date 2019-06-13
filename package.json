@@ -1,7 +1,7 @@
 {
   "name": "todo-list",
   "version": "1.0.0",
-  "description": "Condors Labs test",
+  "description": "Test Qrvey",
   "main": "index.js",
   "scripts": {
     "test": "nodemon server.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jjrb3/cl-todo-list.git"
+    "url": "git+https://github.com/jjrb3/qrvey-test"
   },
   "author": "Jeremy Reyes B.",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jjrb3/cl-todo-list/issues"
+    "url": "https://github.com/jjrb3/qrvey-test/issues"
   },
-  "homepage": "https://github.com/jjrb3/cl-todo-list#readme",
+  "homepage": "https://github.com/jjrb3/qrvey-test#readme",
   "dependencies": {
     "bcrypt": "^3.0.5",
     "body-parser": "^1.18.3",
