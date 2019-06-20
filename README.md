@@ -43,6 +43,6 @@ For this project use MongoDB as a database NoSQL.
 
 Default port: 27017
 
-# Unity test - Jest
+# Unit test - Jest
 
 <img src="https://i.ibb.co/DWgr1wv/Screenshot-2019-06-05-at-17-20-49.png" />
